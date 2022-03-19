@@ -1,4 +1,4 @@
-import { Request, Response } from "../depts.ts";
+import { Response } from "../depts.ts";
 
 // Route for Home page 
 export const home = ({ response }: { response : Response }) => {
