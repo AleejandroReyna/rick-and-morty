@@ -11,7 +11,7 @@ export class DataManager implements IManager{
         this.total = total
     }
     
-    getData = async () => {
+    fetchData = async () => {
         const promises = []
         // Get total pages by number of items
         let pageTotal : number = this.total / 20
@@ -21,5 +21,15 @@ export class DataManager implements IManager{
             promises.push(request.json())
         }
         return Promise.all(promises)
+    }
+
+    getData = async () => {
+        try {
+            const request = await this.fetchData()
+            const data = [].concat(...request.map(item => item.results))
+            return data
+        } catch(e) {
+            throw e
+        }
     }
 }
