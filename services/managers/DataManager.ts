@@ -11,12 +11,25 @@ export class DataManager implements IManager{
         this.total = total
     }
     
-    getData = async () => {
+    fetchData = async () => {
         const promises = []
-        for (let page = 1; page <= (this.total / 20) + 1; page++) {
+        // Get total pages by number of items
+        let pageTotal : number = this.total / 20
+        this.total % 20 && pageTotal++
+        for (let page = 1; page <= pageTotal; page++) {
             const request = await apiRequest(this.resource, page)
             promises.push(request.json())
         }
         return Promise.all(promises)
+    }
+
+    getData = async () => {
+        try {
+            const request = await this.fetchData()
+            const data = [].concat(...request.map(item => item.results))
+            return data
+        } catch(e) {
+            throw e
+        }
     }
 }
