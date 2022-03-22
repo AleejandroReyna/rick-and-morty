@@ -1,5 +1,6 @@
 import { Response } from "../depts.ts"
 import { DataManager } from '../services/managers/DataManager.ts'
+import { charactersCount } from '../services/utilities/charactersCount.ts'
 
 // Route for Home page 
 export const getInfo = async ({ response } : { response : Response }) => {
@@ -11,12 +12,14 @@ export const getInfo = async ({ response } : { response : Response }) => {
 
     //get data from managers
     const locationData = await locationManager.getData()
-    const characterData = await characterManager.getData()
-    const episodeData = await episodeManager.getData()
+    const locationCount = charactersCount(locationData, 'a')
+    
+    //const characterData = await characterManager.getData()
+    //const episodeData = await episodeManager.getData()
     
     response.status = 200
     response.body = {
-        status: 'working'
+        coincidences: locationCount
     }
     return response
 };
