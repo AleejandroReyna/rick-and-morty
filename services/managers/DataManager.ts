@@ -2,9 +2,8 @@ import { IManager} from './interfaces.ts'
 import { apiRequest } from '../requests/apiRequest.ts'
 
 export class DataManager implements IManager{
-    resource = ''
-    total = 0
-    data = []
+    resource : string
+    total : number
 
     constructor(resource: string, total : number) {
         this.resource = resource
