@@ -1,5 +1,5 @@
-import { apiRequest } from '../requests/apiRequest.ts'
 import { IManager} from './interfaces.ts'
+import { apiRequest } from '../requests/apiRequest.ts'
 
 export class DataManager implements IManager{
     resource = ''
