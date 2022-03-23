@@ -1,25 +1,22 @@
-import { apiRequest } from '../requests/apiRequest.ts'
 import { IManager} from './interfaces.ts'
+import { apiRequest } from '../requests/apiRequest.ts'
 
 export class DataManager implements IManager{
-    resource = ''
-    total = 0
-    data = []
+    resource : string
+    total : number
 
     constructor(resource: string, total : number) {
         this.resource = resource
         this.total = total
     }
     
-    fetchData = async () => {
-        const promises = []
-        // Get total pages by number of items
+    fetchData = () => {
         let pageTotal : number = this.total / 20
         this.total % 20 && pageTotal++
-        for (let page = 1; page <= pageTotal; page++) {
-            const request = await apiRequest(this.resource, page)
-            promises.push(request.json())
-        }
+        const promises = Array.from({length: pageTotal}, async (_, i) => {
+            const request = await apiRequest(this.resource, i)
+            return request.json()
+        })
         return Promise.all(promises)
     }
 
