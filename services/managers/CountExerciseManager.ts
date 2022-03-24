@@ -24,7 +24,7 @@ export class CountExerciseManager implements IExerciseManager {
         return {
             exercise_name: this.name,
             time,
-            in_time: time < 1000,
+            in_time: time < 2500,
             results
         }
     }
