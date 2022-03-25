@@ -10,8 +10,7 @@ export class CountExerciseManager implements IExerciseManager {
         this.params = params
     }
 
-    executeExercise = async () : Promise<ExerciseResponse> => {
-        const startTime = performance.now()
+    executeExercise = async (startTime : number) : Promise<ExerciseResponse> => {
         const promises = this.params.map(param => {
             const responseManager = new ResponseManager(param.resource, param.data)
             return responseManager.generateResponse(param.search)

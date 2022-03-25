@@ -66,7 +66,7 @@ export interface ExerciseResponse {
 
 export interface IExerciseManager {
     name: string,
-    executeExercise: () => Promise<ExerciseResponse>
+    executeExercise: (startTime : number) => Promise<ExerciseResponse>
 }
 
 export interface ICountExerciseParams {
@@ -76,6 +76,6 @@ export interface ICountExerciseParams {
 }
 
 export interface IEpisodeLocationsParams {
-    list: (ICharacter|ILocation|IEpisode)[],
-    through: (ICharacter|ILocation|IEpisode)[]
+    list: any[],
+    through: any[]
 }
