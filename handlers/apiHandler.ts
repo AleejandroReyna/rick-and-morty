@@ -42,6 +42,7 @@ export async function getInfo({ response }: { response: Response; }) {
   ])
 
   response.status = 200;
+  response.type = "application/json"
   response.body = results
   return response;
 }

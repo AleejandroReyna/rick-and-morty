@@ -1,7 +1,7 @@
 import { Router as oakRouter } from "../depts.ts"
 
 import {
-    home
+    home as _home
 } from '../handlers/pagesHandler.ts'
 import {
     getInfo
@@ -14,7 +14,7 @@ ApiRouter
     .get("/info", getInfo)
 
 Router
-    .get("/", home)
+    .get("/", getInfo)
     .use('/api', ApiRouter.routes(), ApiRouter.allowedMethods())
 
 export { Router }
